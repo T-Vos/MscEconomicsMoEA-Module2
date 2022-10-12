@@ -1,3 +1,11 @@
+---
+title: "Forcasting American Economy"
+author: "ThomasVos"
+date: '2022-10-12'
+output: word_document
+---
+
+```{r setup}
 library(readxl)
 library(ggplot2)
 library("dplyr")
@@ -45,7 +53,7 @@ df.2013 %>% select(ehat:ehat_l6) %>%  cor(use = "pairwise")
 df.2013 %>% select(ehat:ehat_l7) %>%  cor(use = "pairwise")
 df.2013 %>% select(ehat:ehat_l8) %>%  cor(use = "pairwise")
 
-acf(df.2013$ehat_l3)
+#acf(df.2013$ehat_l3)
 
 Reg.19602013.L1 <- ardl(cpi ~  gdpg+interest+nettrade, data = df.2013, order = c(1,1,1,1))
 Reg.19602013.L2 <- ardl(cpi ~  gdpg+interest+nettrade, data = df.2013, order = c(1,2,2,2))
@@ -56,7 +64,7 @@ Reg.19602013.L6 <- ardl(cpi ~  gdpg+interest+nettrade, data = df.2013, order = c
 Reg.19602013.L7 <- ardl(cpi ~  gdpg+interest+nettrade, data = df.2013, order = c(1,7,7,7))
 Reg.19602013.L8 <- ardl(cpi ~  gdpg+interest+nettrade, data = df.2013, order = c(1,8,8,8))
 models <- list(Reg.19602013.L1, Reg.19602013.L2,Reg.19602013.L3,Reg.19602013.L4,Reg.19602013.L5,Reg.19602013.L6,Reg.19602013.L7,Reg.19602013.L8)
-modelsummary(models)
+#modelsummary(models)
 
 bgt_1_6 <- bgtest(Reg.19602013.L6, order = 1)
 bgt_1_6
@@ -70,4 +78,6 @@ bgt_1_8
 
 Reg.19602018.L8 <- ardl(cpi ~  gdpg+interest+nettrade, data = df, order = c(1,8,8,8))
 
-df$residuals <- c(NA,NA,NA,NA,NA,NA,residuals(Reg.19602018.L8))
+#df$residuals <- c(NA,NA,NA,NA,NA,NA,residuals(Reg.19602018.L8))
+
+```

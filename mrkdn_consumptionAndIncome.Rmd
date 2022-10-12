@@ -1,3 +1,12 @@
+---
+title: "ConsumptionAndIncome"
+author: "ThomasVos"
+date: '2022-10-12'
+output: word_document
+---
+
+```{r}
+
 library(readxl)
 library(ggplot2)
 pacman::p_load(tidyverse, haven, lmtest, stargazer, 
@@ -12,7 +21,7 @@ cor(df$PCE, df$DPI)
 reg.1.res = resid(reg.1) 
 df$Residuals = resid(reg.1)
 
-dwtest(reg.1.res)
+#dwtest(reg.1.res)
 
 dwtest(PCE ~ DPI, data = df)
 durbinWatsonTest(reg.1.res)
@@ -29,11 +38,12 @@ plot.1
 plot.Residual = plot(df$Quarter, df$Residuals, ylab="Residuals", 
                      xlab="Time", 
                      main="Residuals plot") 
+
 plot.Residual
 
 # Importing library
 library(tseries)
-adf.test(df)
+#adf.test(df)
 
 df$logPCE = log10(df$PCE)
 df$logDPI = log10(df$DPI)
@@ -62,8 +72,8 @@ legend("topleft", legend = c("HPcycle"), lty = 1, col = c("black"),
        bty = "n")
 
 
-reg.loged.1 = lm(PCE ~ hp.decom, data=df)
-summary(reg.loged.1)
+#reg.loged.1 = lm(PCE ~ hp.decom, data=df)
+#summary(reg.loged.1)
 
 
 
@@ -78,3 +88,5 @@ plot.2
 
 reg.2 = lm(df$PCE ~ df$difference + df$DPI, data=df)
 summary(reg.2)
+
+```
